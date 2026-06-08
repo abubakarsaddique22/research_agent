@@ -1,0 +1,28 @@
+# Environment Variables - KABHI PUSH MAT KARO
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+
+# UV
+.venv/
+venv/
+
+# Reports output - optional
+outputs/reports/*.md
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# CrewAI
+*.db
+*.sqlite

@@ -1,0 +1,163 @@
+research_task:
+  description: >
+    Conduct a thorough and comprehensive research on the topic: {topic}.
+
+    Your research must include:
+    1. Latest developments and current state of {topic}
+    2. Key facts, statistics and important data points
+    3. Major players, companies or people involved in {topic}
+    4. Current trends and future predictions about {topic}
+    5. Challenges and opportunities related to {topic}
+    6. Real world applications and use cases of {topic}
+
+    Search the internet thoroughly using the search tool.
+    Do multiple searches with different search queries to
+    get comprehensive information.
+    Always note down the sources and links for everything you find.
+    Do NOT make up any information — only use what you find.
+
+  expected_output: >
+    A detailed and comprehensive research notes document containing:
+
+    - Overview of {topic} with key background information
+    - Latest news and developments (with dates)
+    - Important statistics and data points (with sources)
+    - Key players, companies or people involved
+    - Current trends and future outlook
+    - Real world applications and examples
+    - Challenges and opportunities
+    - List of all sources and links used
+
+    The notes should be detailed, well organized and
+    contain only factual information with proper sources.
+    Minimum 500 words of research content.
+
+  agent: researcher
+
+# -------------------------------------------------------
+
+analysis_task:
+  description: >
+    Carefully analyze the research notes provided by the
+    researcher about {topic}.
+
+    Your analysis must:
+    1. Read through all the research notes completely
+    2. Identify the top 5-7 most important key insights
+    3. Extract all important statistics and data points
+    4. Find the most significant trends and patterns
+    5. Identify key players and their importance
+    6. Note any conflicting information or uncertainties
+    7. Prioritize information by importance and relevance
+    8. Remove any duplicate or irrelevant information
+
+    You must ONLY work with information from the research notes.
+    Do NOT add any new information or make assumptions.
+    Be objective and analytical in your approach.
+
+  expected_output: >
+    A structured analysis document containing:
+
+    ## Key Insights
+    - Top 5-7 most important insights about {topic}
+    - Each insight explained clearly in 2-3 sentences
+
+    ## Important Statistics & Data
+    - All key numbers, percentages and statistics
+    - Each stat with its source mentioned
+
+    ## Major Trends
+    - Top 3-5 trends identified from research
+    - Brief explanation of each trend
+
+    ## Key Players
+    - Important companies, people or organizations
+    - Their role and significance explained
+
+    ## Opportunities & Challenges
+    - Main opportunities identified
+    - Main challenges identified
+
+    ## Source Summary
+    - List of most reliable sources used
+
+    Format must be clean, structured and easy to read.
+
+  agent: analyst
+  context:
+    - research_task
+
+# -------------------------------------------------------
+
+write_task:
+  description: >
+    Write a complete, professional and well structured
+    research report about {topic} based on the analysis
+    provided by the analyst.
+
+    Your report must include:
+    1. An engaging executive summary (3-4 sentences)
+    2. Clear introduction explaining what {topic} is
+    3. Main body with all key findings organized in sections
+    4. Statistics and data presented clearly
+    5. Key trends section with explanations
+    6. Real world applications and examples
+    7. Future outlook and predictions
+    8. Challenges and opportunities section
+    9. Strong conclusion with key takeaways
+    10. References section with all sources
+
+    Writing guidelines:
+    - Use professional but easy to read tone
+    - Use proper markdown formatting
+    - Use clear headings and subheadings
+    - Use bullet points where appropriate
+    - Use bold text for important points
+    - Keep paragraphs short and clear
+    - Minimum 800 words
+    - Make it engaging and informative
+
+  expected_output: >
+    A complete professional research report in markdown format:
+
+    # [Topic Name] — Research Report
+
+    ## Executive Summary
+    [3-4 sentence overview]
+
+    ## Introduction
+    [Background and context]
+
+    ## Key Findings
+    [Main discoveries from research]
+
+    ## Current Trends
+    [Important trends with explanations]
+
+    ## Key Players & Organizations
+    [Who is involved and why they matter]
+
+    ## Real World Applications
+    [Practical examples and use cases]
+
+    ## Opportunities & Challenges
+    [What opportunities exist, what challenges exist]
+
+    ## Future Outlook
+    [Predictions and what to expect]
+
+    ## Conclusion
+    [Key takeaways and final thoughts]
+
+    ## References
+    [All sources used]
+
+    ---
+    Report must be minimum 800 words, properly formatted
+    in markdown and ready for professional use.
+
+  agent: writer
+  context:
+    - research_task
+    - analysis_task
+  output_file: outputs/reports/report.md
