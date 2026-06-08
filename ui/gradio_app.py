@@ -2,26 +2,26 @@ import gradio as gr
 import sys
 import os
 
-# Path add karo
+# Add path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 from research.crew import ResearchAgentCrew
 
 
 # ─────────────────────────────────────────
-# RESEARCH FUNCTION — Gradio Call Karega
+# RESEARCH FUNCTION — Called by Gradio
 # ─────────────────────────────────────────
 
 def run_research(topic: str, depth: str) -> tuple:
     """
-    Gradio is function ko call karega
+    Gradio will call this function
     Returns: report, status, word_count
     """
 
     # Empty check
     if not topic.strip():
         return (
-            "❌ Error: Topic empty nahi ho sakta",
+            "❌ Error: Topic cannot be empty",
             "❌ Failed",
             "0 words"
         )
@@ -29,13 +29,13 @@ def run_research(topic: str, depth: str) -> tuple:
     # Too short check
     if len(topic.strip()) < 3:
         return (
-            "❌ Error: Topic kam se kam 3 characters ka hona chahiye",
+            "❌ Error: Topic must be at least 3 characters long",
             "❌ Failed",
             "0 words"
         )
 
     try:
-        # Crew run karo
+        # Run crew
         crew = ResearchAgentCrew()
         result = crew.run_research(topic=topic, depth=depth)
 
@@ -123,7 +123,7 @@ def create_ui():
         # ── Output Section ──
         report_output = gr.Markdown(
             label="Research Report",
-            value="Report yahan appear hoga..."
+            value="Report will appear here..."
         )
 
         # ── Example Topics ──
@@ -148,7 +148,7 @@ def create_ui():
         )
 
         clear_btn.click(
-            fn=lambda: ("", "detailed", "Report yahan appear hoga...", "", ""),
+            fn=lambda: ("", "detailed", "Report will appear here...", "", ""),
             outputs=[topic_input, depth_input, report_output,
                      status_output, word_count_output]
         )
@@ -157,7 +157,7 @@ def create_ui():
 
 
 # ─────────────────────────────────────────
-# RUN
+# RUN APPLICATION
 # ─────────────────────────────────────────
 
 if __name__ == "__main__":
